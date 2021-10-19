@@ -6,25 +6,25 @@
 </template>
 
 <script>
-  export default {
-    name: 'CurrentTime',
-    computed: {
-      getCurrentDate() {
-        const browserLocale =
-          navigator.languages && navigator.languages.length
-            ? navigator.languages[0]
-            : navigator.language
+export default {
+  name: 'CurrentTime',
+  computed: {
+    getCurrentDate() {
+      const browserLocale =
+        navigator.languages && navigator.languages.length
+          ? navigator.languages[0]
+          : navigator.language
 
-        const intlDateTime = Intl.DateTimeFormat(browserLocale, {
-          year: 'numeric',
-          month: 'numeric',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-        })
+      const intlDateTime = Intl.DateTimeFormat(browserLocale, {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      })
 
-        return intlDateTime.format(new Date())
-      },
+      return intlDateTime.format(new Date())
     },
-  }
+  },
+}
 </script>

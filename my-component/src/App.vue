@@ -6,19 +6,19 @@
 </template>
 
 <script>
-  import CurrentTime from './components/CurrentTime.vue'
-  import TaskInput from './components/TaskInput.vue'
+import CurrentTime from './components/CurrentTime.vue'
+import TaskInput from './components/TaskInput.vue'
 
-  export default {
-    name: 'app',
-    components: {
-      CurrentTime,
-      TaskInput,
+export default {
+  name: 'app',
+  components: {
+    CurrentTime,
+    TaskInput,
+  },
+  methods: {
+    addNewTask(task) {
+      alert(`New task added: ${task}`)
     },
-    methods: {
-      addNewTask(task) {
-        alert(`New task added: ${task}`)
-      }
-    },
-  }
+  },
+}
 </script>
