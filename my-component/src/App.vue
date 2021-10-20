@@ -14,9 +14,9 @@
               <input
                 type="checkbox"
                 :checked="!!taskItem.finishedAt"
-                @input="changeStatus(index)"
+                @input="changeStatus(taskItem.id)"
               />
-              {{ taskItem.task }}
+              #{{ taskItem.id }} - {{ taskItem.task }}
               <span v-if="taskItem.finishedAt">
                 | Done at: {{ formatDate(taskItem.finishedAt) }}</span
               >
@@ -42,8 +42,20 @@
       taskList: [],
     }),
     computed: {
+      baseList() {
+        return [...this.taskList].map((t, index) => ({
+          ...t,
+          id: index + 1,
+        }))
+      },
+      filteredList() {
+        return [...this.baseList].filter(t => !t.finishedAt)
+      },
+      sortedList() {
+        return [...this.filteredList].sort((a, b) => b.id - a.id)
+      },
       displayList() {
-        return this.taskList
+        return this.sortedList
       },
     },
     methods: {
@@ -73,8 +85,8 @@
           finishedAt: undefined,
         })
       },
-      changeStatus(taskIndex) {
-        const task = this.taskList[taskIndex]
+      changeStatus(taskId) {
+        const task = this.taskList[taskId - 1]
         if (task.finishedAt) {
           task.finishedAt = undefined
         } else {
