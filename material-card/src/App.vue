@@ -36,16 +36,19 @@
 </template>
 
 <script>
-  import MaterialCardBox from './components/MaterialCardBox.vue'
-  import MaterialButton from './components/MaterialButton.vue'
+  import { defineAsyncComponent } from 'vue'
   import StarRating from './components/StarRating.vue'
 
   export default {
     name: 'App',
     components: {
       StarRating,
-      MaterialButton,
-      MaterialCardBox,
+      MaterialButton: defineAsyncComponent(() =>
+        import('./components/MaterialButton.vue')
+      ),
+      MaterialCardBox: defineAsyncComponent(() =>
+        import('./components/MaterialCardBox.vue')
+      ),
     },
     methods: {
       resetVote() {
