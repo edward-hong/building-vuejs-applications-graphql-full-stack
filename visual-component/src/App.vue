@@ -13,20 +13,31 @@
       "
     >
       <template v-slot:action>
-        <button>Action Button</button>
-        <button>Action Button</button>
+        <MaterialButton backgroundColor="#027be3" textColor="#fff"
+          >Action 1</MaterialButton
+        ><MaterialButton backgroundColor="#26a69a" textColor="#fff" is-flat
+          >Action 2</MaterialButton
+        >
       </template>
     </MaterialCardBox>
   </div>
 </template>
 
 <script>
+  import MaterialButton from './components/MaterialButton.vue'
   import MaterialCardBox from './components/MaterialCardBox'
 
   export default {
     name: 'app',
     components: {
       MaterialCardBox,
+      MaterialButton,
     },
   }
 </script>
+
+<style>
+  body {
+    font-size: 14px;
+  }
+</style>
