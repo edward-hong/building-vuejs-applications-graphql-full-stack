@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <StarRatingInput v-if="!voted" :max-rating="maxRating" @final-vote="vote">
-      Rate this Place
-    </StarRatingInput>
-    <StarRatingDisplay
-      v-else
-      :max-rating="maxRating"
-      :rating="rating || rank"
-      :votes="votes"
-    />
-  </div>
+  <component
+    :is="starComponent"
+    :max-rating="maxRating"
+    :rating="rating || rank"
+    :votes="votes"
+    @final-vote="vote"
+  >
+    Rate this place
+  </component>
 </template>
 
 <script>
@@ -40,6 +38,12 @@
       rank: 0,
       voted: false,
     }),
+    computed: {
+      starComponent() {
+        if (!this.voted) return StarRatingInput
+        return StarRatingDisplay
+      },
+    },
     methods: {
       vote(rank) {
         this.rank = rank
