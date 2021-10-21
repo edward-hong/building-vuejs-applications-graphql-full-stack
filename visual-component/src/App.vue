@@ -6,36 +6,58 @@
       show-media
       show-actions
       img-src="https://picsum.photos/300/200"
-      :main-text="
-        `
-        The path of the righteous man is beset on all sides by the iniquities
-        of the selfish and the tyranny of evil men.`
-      "
     >
+      <p>
+        <StarRating ref="starRating" />
+      </p>
+      <p>
+        The path of the righteous man is beset on all sides by the iniquities of
+        the selfish and the tyranny of evil men.
+      </p>
       <template v-slot:action>
-        <MaterialButton backgroundColor="#027be3" textColor="#fff"
-          >Action 1</MaterialButton
-        ><MaterialButton backgroundColor="#26a69a" textColor="#fff" is-flat
-          >Action 2</MaterialButton
+        <MaterialButton
+          background-color="#027be3"
+          text-color="#fff"
+          @click="resetVote"
         >
+          Reset
+        </MaterialButton>
+        <MaterialButton
+          background-color="#26a69a"
+          text-color="#fff"
+          is-flat
+          @click="forceVote"
+        >
+          Rate 5 Stars
+        </MaterialButton>
       </template>
     </MaterialCardBox>
   </div>
 </template>
 
 <script>
+  import MaterialCardBox from './components/MaterialCardBox.vue'
   import MaterialButton from './components/MaterialButton.vue'
-  import MaterialCardBox from './components/MaterialCardBox'
+  import StarRating from './components/StarRating.vue'
 
   export default {
-    name: 'app',
+    name: 'App',
     components: {
-      MaterialCardBox,
+      StarRating,
       MaterialButton,
+      MaterialCardBox,
+    },
+    methods: {
+      resetVote() {
+        this.$refs.starRating.vote(0)
+        this.$refs.starRating.voted = false
+      },
+      forceVote() {
+        this.$refs.starRating.vote(5)
+      },
     },
   }
 </script>
-
 <style>
   body {
     font-size: 14px;
