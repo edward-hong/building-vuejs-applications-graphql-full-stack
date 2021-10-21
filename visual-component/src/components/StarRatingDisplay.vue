@@ -34,6 +34,13 @@
         default: 0,
       },
     },
+    inject: {
+      starRating: {
+        default() {
+          console.error('StarRatingDisplay need to be a child of StarRating')
+        },
+      },
+    },
     methods: {
       getStarName(rate) {
         if (rate <= this.rating) {

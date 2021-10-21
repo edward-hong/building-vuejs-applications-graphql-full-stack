@@ -17,6 +17,9 @@
   export default {
     name: 'StarRating',
     components: { StarRatingDisplay, StarRatingInput },
+    provide: {
+      starRating: true,
+    },
     props: {
       maxRating: {
         type: Number,

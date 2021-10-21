@@ -29,6 +29,13 @@
         default: 5,
       },
     },
+    inject: {
+      starRating: {
+        default() {
+          console.error('StarRatingInput need to be a child of StarRating')
+        },
+      },
+    },
     data: () => ({
       rating: 0,
     }),
