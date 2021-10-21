@@ -13,29 +13,14 @@
 <script>
   import StarRatingInput from './StarRatingInput.vue'
   import StarRatingDisplay from './StarRatingDisplay.vue'
+  import StarRatingDisplayMixin from '../mixins/starRatingDisplay'
 
   export default {
     name: 'StarRating',
     components: { StarRatingDisplay, StarRatingInput },
+    mixins: [StarRatingDisplayMixin],
     provide: {
       starRating: true,
-    },
-    props: {
-      maxRating: {
-        type: Number,
-        required: false,
-        default: 5,
-      },
-      rating: {
-        type: Number,
-        required: false,
-        default: 0,
-      },
-      votes: {
-        type: Number,
-        required: false,
-        default: 0,
-      },
     },
     data: () => ({
       rank: 0,
